@@ -34,27 +34,50 @@ body {
   transform: translateZ(100px) rotateY(30deg);
 }
 
-.image:hover + * + * {
-  filter: brightness(0.4);
-  transform: translateZ(50px) rotateY(20deg);
-}
-
-.image:hover + * + * + * {
-  filter: brightness(0.2);
-  transform: translateZ(25px) rotateY(10deg);
-}
-
 .image:has(+ *:hover) {
   filter: brightness(0.6);
   transform: translateZ(100px) rotateY(-30deg);
 }
 
-.image:has(+ * + *:hover) {
-  filter: brightness(0.4);
-  transform: translateZ(50px) rotateY(-20deg);
+/* Screen size more than 768px */
+
+@media (min-width: 769px) {
+  /* Right of the hovered card */
+
+  .image:hover + * + * {
+    filter: brightness(0.4);
+    transform: translateZ(50px) rotateY(20deg);
+  }
+
+  .image:hover + * + * + * {
+    filter: brightness(0.2);
+    transform: translateZ(25px) rotateY(10deg);
+  }
+
+  /* Left of the hovered card */
+
+  .image:has(+ * + *:hover) {
+    filter: brightness(0.4);
+    transform: translateZ(50px) rotateY(-20deg);
+  }
+
+  .image:has(+ * + * + *:hover) {
+    filter: brightness(0.2);
+    transform: translateZ(25px) rotateY(-10deg);
+  }
 }
 
-.image:has(+ * + * + *:hover) {
-  filter: brightness(0.2);
-  transform: translateZ(25px) rotateY(-10deg);
+/* Screen size less than 768px */
+
+@media (max-width: 768px) {
+  #image_container {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .image {
+    width: 100px;
+    height: 150px;
+  }
 }
