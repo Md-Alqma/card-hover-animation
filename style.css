@@ -2,4 +2,59 @@ body {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgrey;
+}
+
+#image_container {
+  display: flex;
+  gap: 5px;
+  transform-style: preserve-3d;
+  transform: perspective(1400px);
+}
+
+.image {
+  width: 130px;
+  height: 180px;
+  object-fit: cover;
+  filter: brightness(0);
+  transition: 0.5s;
+}
+
+.image:hover {
+  filter: brightness(1);
+  transform: translateZ(150px);
+}
+
+.image:hover + * {
+  filter: brightness(0.6);
+  transform: translateZ(100px) rotateY(30deg);
+}
+
+.image:hover + * + * {
+  filter: brightness(0.4);
+  transform: translateZ(50px) rotateY(20deg);
+}
+
+.image:hover + * + * + * {
+  filter: brightness(0.2);
+  transform: translateZ(25px) rotateY(10deg);
+}
+
+.image:has(+ *:hover) {
+  filter: brightness(0.6);
+  transform: translateZ(100px) rotateY(-30deg);
+}
+
+.image:has(+ * + *:hover) {
+  filter: brightness(0.4);
+  transform: translateZ(50px) rotateY(-20deg);
+}
+
+.image:has(+ * + * + *:hover) {
+  filter: brightness(0.2);
+  transform: translateZ(25px) rotateY(-10deg);
 }
